@@ -276,7 +276,7 @@ body.in-workout .rack { transform: perspective(700px) rotateY(-24deg) translateX
    JEFF & SPEECH
    ============================================================ */
 .jeff-wrap {
-  width: min(46vw, 210px); display: block; position: relative;
+  width: min(42vw, 188px); display: block; position: relative;
   filter: drop-shadow(0 16px 22px rgba(0,0,0,.5));
   animation: jeffIdle 3.4s ease-in-out infinite;
   transition: transform .18s cubic-bezier(.3,1.6,.5,1);
@@ -304,10 +304,12 @@ body.in-workout .rack { transform: perspective(700px) rotateY(-24deg) translateX
 
 .jeff-stage {
   position: relative; display: flex; flex-direction: column; align-items: center;
-  padding-top: clamp(60px, 12vh, 120px);
-  min-height: 300px;
+  padding-top: clamp(28px, 7vh, 92px);
+  /* never let flexbox shrink this below its content — otherwise a long
+     speech bubble spills downward and the stat cards paint over it */
+  flex-shrink: 0;
 }
-.jeff-stage.small { min-height: 260px; padding-top: 40px; }
+.jeff-stage.small { padding-top: 32px; flex-shrink: 0; }
 
 /* speech bubble */
 .bubble {
