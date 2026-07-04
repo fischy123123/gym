@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#0c0e11" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>GARAGE JEFF — Your trainer. Your garage. No excuses.</title>
+  <meta name="description" content="Train with Jeff: the sarcastic personal trainer who lives in your garage gym." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230c0e11'/%3E%3Cpath d='M22 46 q-2 -26 28 -26 q30 0 28 26 l-56 0z' fill='%23d33a2f'/%3E%3Cpath d='M26 50 q24 -8 48 0 l0 14 q0 22 -24 22 q-24 0 -24 -22z' fill='%23eec39a'/%3E%3Cpath d='M28 62 q-2 26 22 26 q24 0 22 -26 q-8 10 -22 10 q-14 0 -22 -10z' fill='%235b4330'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ================= GARAGE DOOR (intro) ================= -->
+  <div id="garage-door" class="garage-door">
+    <div class="door-panels">
+      <div class="door-slat"></div><div class="door-slat"></div><div class="door-slat"></div>
+      <div class="door-slat"></div><div class="door-slat"></div><div class="door-slat"></div>
+      <div class="door-slat windows"><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="door-front">
+      <div class="door-logo">
+        <span class="door-logo-top">GARAGE</span>
+        <span class="door-logo-main">JEFF</span>
+        <span class="door-logo-sub">YOUR TRAINER. YOUR GARAGE. NO&nbsp;EXCUSES.</span>
+      </div>
+      <button id="door-open-btn" class="door-handle-btn">
+        <span class="door-handle"></span>
+        <span class="door-handle-label">TAP TO OPEN THE GARAGE</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= THE GARAGE (persistent scene) ================= -->
+  <div id="scene" class="scene">
+    <div class="wall">
+      <div class="wall-sign" id="wall-sign">S T R I V E</div>
+      <!-- fold-out rack, PRx style: folds flat, swings out for workouts -->
+      <div class="rack" id="rack">
+        <div class="rack-upright left"></div>
+        <div class="rack-upright right"></div>
+        <div class="rack-crossbar"></div>
+        <div class="rack-pullup-bar"></div>
+        <div class="rack-hooks"><i></i><i></i></div>
+      </div>
+      <div class="wall-gear">
+        <div class="med-ball" title="20lb med ball"></div>
+        <div class="bands"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+      </div>
+      <div class="plyo-box">24</div>
+      <div class="plate-tree"><i class="pt-45"></i><i class="pt-25"></i><i class="pt-10"></i></div>
+    </div>
+    <div class="turf"></div>
+    <div class="floor"></div>
+  </div>
+
+  <div id="app" class="app">
+
+    <!-- ================= HOME ================= -->
+    <section id="screen-home" class="screen">
+      <header class="home-top">
+        <div class="brand">GARAGE<span>JEFF</span></div>
+        <button id="btn-history" class="chip-btn" aria-label="History">📓 <span id="chip-workouts">0</span></button>
+      </header>
+
+      <div class="jeff-stage">
+        <button id="jeff-home" class="jeff-wrap" aria-label="Poke Jeff"></button>
+        <div id="bubble-home" class="bubble bubble-home"></div>
+      </div>
+
+      <div class="home-panel">
+        <div class="streak-row">
+          <div class="streak-card">
+            <div class="streak-num" id="streak-num">0</div>
+            <div class="streak-label">days without<br>Jeff texting you</div>
+          </div>
+          <div class="streak-card">
+            <div class="streak-num" id="volume-num">0</div>
+            <div class="streak-label" id="volume-label">lbs moved<br>lifetime</div>
+          </div>
+        </div>
+
+        <div class="today-card" id="today-card">
+          <div class="today-eyebrow">JEFF'S PICK FOR TODAY</div>
+          <div class="today-title" id="today-title">Rack Day</div>
+          <div class="today-sub" id="today-sub">Legs & lower body</div>
+          <button id="btn-start-today" class="btn-primary">START SESSION</button>
+        </div>
+
+        <button id="btn-choose" class="btn-ghost">Browse the whiteboard →</button>
+      </div>
+    </section>
+
+    <!-- ================= ONBOARDING ================= -->
+    <section id="screen-onboard" class="screen">
+      <div class="onboard-wrap">
+        <div class="jeff-stage small">
+          <div id="jeff-onboard" class="jeff-wrap"></div>
+          <div id="bubble-onboard" class="bubble bubble-home"></div>
+        </div>
+        <div class="onboard-form" id="onboard-form" hidden>
+          <input id="name-input" type="text" maxlength="16" placeholder="Your name" autocomplete="off" />
+          <button id="btn-name-go" class="btn-primary">THAT'S ME</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROGRAM PICKER ================= -->
+    <section id="screen-programs" class="screen">
+      <header class="screen-header">
+        <button class="back-btn" data-back="home">←</button>
+        <h2>The Whiteboard</h2>
+      </header>
+      <p class="whiteboard-note">— programming by Jeff. complaints dept. permanently closed —</p>
+      <div id="program-list" class="program-list"></div>
+    </section>
+
+    <!-- ================= ACTIVE WORKOUT ================= -->
+    <section id="screen-workout" class="screen">
+      <header class="workout-top">
+        <button id="btn-quit" class="back-btn">✕</button>
+        <div class="workout-progress">
+          <div class="workout-title-sm" id="wo-title">Rack Day</div>
+          <div class="progress-track"><div class="progress-fill" id="wo-progress"></div></div>
+        </div>
+        <div class="workout-clock" id="wo-clock">0:00</div>
+      </header>
+
+      <div class="jeff-corner">
+        <button id="jeff-workout" class="jeff-wrap small" aria-label="Poke Jeff"></button>
+        <div id="bubble-workout" class="bubble bubble-corner"></div>
+      </div>
+
+      <div class="work-card" id="work-card">
+        <!-- filled dynamically: warmup / exercise / rest -->
+      </div>
+    </section>
+
+    <!-- ================= SUMMARY / REPORT CARD ================= -->
+    <section id="screen-summary" class="screen">
+      <div class="report-card" id="report-card">
+        <div class="report-head">
+          <div class="report-eyebrow">JEFF'S OFFICIAL REPORT CARD</div>
+          <div class="report-title" id="report-title">Rack Day</div>
+          <div class="report-date" id="report-date"></div>
+        </div>
+        <div class="grade-stamp" id="grade-stamp">A</div>
+        <div class="report-stats" id="report-stats"></div>
+        <div class="report-remark" id="report-remark"></div>
+        <div class="report-achievements" id="report-achievements"></div>
+        <button id="btn-summary-done" class="btn-primary">BACK TO THE GARAGE</button>
+      </div>
+    </section>
+
+    <!-- ================= HISTORY ================= -->
+    <section id="screen-history" class="screen">
+      <header class="screen-header">
+        <button class="back-btn" data-back="home">←</button>
+        <h2>Jeff's Notebook</h2>
+      </header>
+      <div class="history-stats" id="history-stats"></div>
+      <div class="history-remark" id="history-remark"></div>
+      <div id="history-list" class="history-list"></div>
+      <h3 class="trophy-title">Trophy Shelf</h3>
+      <div id="trophy-list" class="trophy-list"></div>
+    </section>
+
+  </div>
+
+  <!-- toast layer for achievements & PRs -->
+  <div id="toast-layer" class="toast-layer"></div>
+  <!-- chalk confetti canvas -->
+  <canvas id="chalk" class="chalk"></canvas>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
